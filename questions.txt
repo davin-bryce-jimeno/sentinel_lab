@@ -35,3 +35,5 @@ P6.2 Yes the data is still there, the named volume pgdata persists outsiide the 
 P6.3 postgres:16 is the image and the running thing is the container. docker images names the image and docker ps names the container.
 P6.4 Since the docker image is going to use the resolved db 127.0.0.1 is the container's own loopback, so the port mapping wont reach it, 0.0.0.0 listens on all interfaces so the port mapping will reach it.
 Break it : i didnt get a race condition it just worked
+P7.1
+
