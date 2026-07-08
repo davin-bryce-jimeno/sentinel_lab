@@ -1,0 +1,37 @@
+P0.1 the config folder contains the settings which allow multiple packages in the stack to work together, the events folder is an app. The project is the config and the events folder is one of many apps.
+P1.1 returned a QuerySet of every Failed LoginEvent. Returns the LoginEvent whose id is 1.
+P1.2 Returns an empty QuerySet
+P1.3 It raises an Exception and returns nothing at all. The exception method mentions the amount it got back which is seven.
+P1.4 This chain counts the number of Failed LoginEvents by the ip. Count instead of len since the LoginEvents are within a QuerySet and len does not work on QuerySets
+
+P2.1 list / create / retrieve / update / partial_update / destroy
+P2.2 201 and 204 for a successful DELETE
+P2.3 status code is 400 response body is {"username":["This field is required."]}
+P2.4 I see a Login Event List and its different from the curl since by default the DRF detects the client using HTTP content negotiation, when you visit the API in a web browser, it sends an Accept: text/html header, triggering the Browsable API. When you use curl, it defaults to Accept: */*, causing DRF to return JSON.
+non ai answer: The browser sends different headers than curl does, so DRF shows me the HTML form page in the browser but plain JSON to curl.
+Break it: predict : rejected since it is a case sensitive status
+{"status":["\"failed\" is not a valid choice."]}
+
+P3.1 - Error: Database access not allowed, use the "django_db" mark pytest-django blocks DB access by default
+P3.2 - Because they are not actually running on the server. Each test is running inside of a transaction which gets rolled back after the tests.
+P3.3 A fixture is a dependency which is injected by name into the test signature and can manage setup/teardown which pytest resolves.
+
+P4.1 Took some experimenting but since the normal tsc is running without --strict nothing happened but the question's answer in the lab was assuming --strict was running so the useState would infer as never[] but without --strict flag on the tsc the useState([]) was inferring as any which caused nothing to break.
+P4.2 The app does not break but there is an error which says "Each child in a list should have a unique "key" property". Without keys React falls back to index based diffing.
+P4.3 Changing [filter] to [] causes the "Failed only" and "Success only" filters to not work and the app just returns the whole list still with no filter this is since the array is not being filtered and the dropdown is returning the array. Removing the array entirely causes the app to crash since it creates an infinite loop error. This infinite loop error is a fetch loop and it will fetch after every render. 
+P4.4 The ui shows a empty list with "0 failed logins shown", since the django backend does not return the data. fetch rejects (NetworkError) ->.then is skipped -> .catch logs in the console -> .finally always runs so the setLoading(false) is applied and a empty list is rendered.
+P4.5 setEvents(events.push(newEvent)) calls on the length of the array not the LoginEvent[]. Also .push() directly mutates the existing events array rather than creating a new one. Both of these break how React expects state updates to work, o this is why the functional updater form is used instead to avoid relying on possibly stale events closure: setEvents(prevEvents => [...prevEvents, newEvent]);
+Break it: Says Cross-Origin Request Blocked. 
+
+P5.1 describe in jest is used to group related tests into a single suite, in pytest test groups are built in standard Python classes prefixed with Test
+it in jest is used to define a single test declaration block, in Pytest this is done with the test_ prefixed functions
+expect(x).toBe(2) is a test assertion in jest and in pytest this is a assert a == b statement.
+P5.2 The test outputs are pretty similar since they both describe failed tests and point to the failing assertion. Both test outputs also will list the passing tests.
+
+Stretch goal for interview: Component testing = @testing=library/react + jsdom which is the next layer up from unit tests in jest.
+
+P6.1 db is a service which is the postgres image. In the db service is a volume which details where the db is located. Then in the django DATABASES block since the os.environ is defined in docker and the get works django can get the postgres database using the default port "5432".
+P6.2 Yes the data is still there, the named volume pgdata persists outsiide the container lifecycle.
+P6.3 postgres:16 is the image and the running thing is the container. docker images names the image and docker ps names the container.
+P6.4 Since the docker image is going to use the resolved db 127.0.0.1 is the container's own loopback, so the port mapping wont reach it, 0.0.0.0 listens on all interfaces so the port mapping will reach it.
+Break it : i didnt get a race condition it just worked

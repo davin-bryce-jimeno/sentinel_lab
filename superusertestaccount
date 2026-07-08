@@ -1,0 +1,6 @@
+user admin_dj
+password superadmintest
+
+docker
+djadmin
+djadminpassword
