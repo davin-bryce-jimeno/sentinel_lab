@@ -35,4 +35,6 @@ P6.2 Yes the data is still there, the named volume pgdata persists outsiide the 
 P6.3 postgres:16 is the image and the running thing is the container. docker images names the image and docker ps names the container.
 P6.4 Since the docker image is going to use the resolved db 127.0.0.1 is the container's own loopback, so the port mapping wont reach it, 0.0.0.0 listens on all interfaces so the port mapping will reach it.
 Break it : i didnt get a race condition it just worked
-P7.1
+P7.1 The pytest falls back to the sqlite db (which uses the in cache temporary db to run tests) since docker is not active in the CI.
+P7.2 Npm ci installs exactly from package-lock.json, npm install might update the lockfile so it does not get used in ci.
+P7.3 Git merge joins two branches together and handles conflicts. Git rebase keeps the branches seperate and applies all new changes on the non-working branch to the history of the working branch, also handling conflicts in the new history.
