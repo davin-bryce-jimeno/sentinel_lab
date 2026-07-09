@@ -1,8 +1,8 @@
 P0.1 the config folder contains the settings which allow multiple packages in the stack to work together, the events folder is an app. The project is the config and the events folder is one of many apps.
 P1.1 returned a QuerySet of every Failed LoginEvent. Returns the LoginEvent whose id is 1.
-P1.2 Returns an empty QuerySet
+P1.2 Returns an empty QuerySet.
 P1.3 It raises an Exception and returns nothing at all. The exception method mentions the amount it got back which is seven.
-P1.4 This chain counts the number of Failed LoginEvents by the ip. Count instead of len since the LoginEvents are within a QuerySet and len does not work on QuerySets
+P1.4 This chain counts the number of Failed LoginEvents by the ip. Count instead of len since the LoginEvents are within a QuerySet and len does not work on QuerySets.
 
 P2.1 list / create / retrieve / update / partial_update / destroy
 P2.2 201 and 204 for a successful DELETE
